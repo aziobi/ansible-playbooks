@@ -27,7 +27,7 @@
     shell: "r1soft-setup --get-key http://3.10.225.156" 
   
   handlers: 
-    name: AGENT_RESTART
+  - name: AGENT_RESTART
     service: 
       name: cdp-agent 
       state: restarted
