@@ -1,0 +1,27 @@
+---
+- name: Handler
+  hosts: 52.87.234.3
+  become: true
+  become_method: sudo
+  ignore_errors: false
+  handlers:
+    - name: HTTPD RESTART
+      systemd: 
+        name: httpd 
+        state: restarted
+    - name: MYSQL RESTART
+      systemd: 
+        name: mysqld 
+        state: restarted
+  tasks:
+    - name: Handler tasks
+      package: 
+        name: httpd
+        state: latest
+      notify: HTTPD RESTART 
+    - name: Install mysql
+      package: 
+        name: mysql-server
+        state: present
+      notify: MYSQL RESTART
+  
